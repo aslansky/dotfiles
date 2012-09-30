@@ -1,11 +1,38 @@
 # https://github.com/blinks zsh theme
 
-function _prompt_char() {
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    echo "%{%F{blue}%}±%{%f%k%b%}"
-  else
+function prompt_char {
+    git branch >/dev/null 2>/dev/null && echo '±' && return
+    hg root >/dev/null 2>/dev/null && echo '☿' && return
+    svn info >/dev/null 2>/dev/null && echo '✻' && return
     echo ' '
-  fi
+}
+
+function svn_prompt_info {
+    # Set up defaults
+    local svn_branch=""
+    local svn_repository=""
+    local svn_version=""
+    local svn_change=""
+
+    # only if we are in a directory that contains a .svn entry
+    if [ -d ".svn" ]; then
+        # query svn info and parse the results
+        svn_branch=`svn info | grep '^URL:' | egrep -o '((tags|branches)/[^/]+|trunk).*' | sed -E -e 's/^(branches|tags)\///g'`
+        svn_repository=`svn info | grep '^Repository Root:' | egrep -o '(http|https|file|svn|svn+ssh)/[^/]+' | egrep -o '[^/]+$'`
+        svn_version=`svnversion -n`
+
+        # this is the slowest test of the bunch
+        change_count=`svn status | grep "?\|\!\|M\|A" | wc -l`
+        if [ "$change_count" != "       0" ]; then
+            svn_change=" [dirty]"
+        else
+            svn_change=""
+        fi
+
+        # show the results
+        echo "%F{blue}$svn_repository/$svn_branch @ $svn_version%f%F{yellow}$svn_change%f"
+
+    fi
 }
 
 function prompt_blinks_precmd {
@@ -14,14 +41,6 @@ function prompt_blinks_precmd {
     branch_format="(%F{blue}%s:%f%F{green}%b%f%u%c●%f)"
   else
     branch_format="(%F{blue}%s:%f%F{green}%b%f%u%c)"
-  fi
-
-  zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
-
-  vcs_info 'prompt'
-
-  if (( $+functions[python-info] )); then
-    python-info
   fi
 
   # Get Git repository information.
@@ -46,43 +65,33 @@ function prompt_blinks_setup {
   zstyle ':prezto:module:editor' completing '%B%F{red}...%f%b'
 
   # git
-  zstyle ':prezto:module:git' action ':%%B%F{yellow}%s%f%%b'
-  zstyle ':prezto:module:git' added ' %%B%F{green}✚%f%%b'
-  zstyle ':prezto:module:git' ahead ' %%B%F{yellow}⬆%f%%b'
-  zstyle ':prezto:module:git' behind ' %%B%F{yellow}⬇%f%%b'
-  zstyle ':prezto:module:git' branch ':%F{green}%b%f'
-  zstyle ':prezto:module:git' commit ':%F{green}%.7c%f'
-  zstyle ':prezto:module:git' deleted ' %%B%F{red}✖%f%%b'
-  zstyle ':prezto:module:git' modified ' %%B%F{blue}✱%f%%b'
+  zstyle ':prezto:module:git' dirty '%F{yellow}[dirty]%f'
+  zstyle ':prezto:module:git' branch '%F{blue}%b%f'
   zstyle ':prezto:module:git' position ':%F{green}%p%f'
-  zstyle ':prezto:module:git' renamed ' %%B%F{magenta}➜%f%%b'
-  zstyle ':prezto:module:git' stashed ' %%B%F{cyan}✭%f%%b'
-  zstyle ':prezto:module:git' unmerged ' %%B%F{yellow}═%f%%b'
-  zstyle ':prezto:module:git' untracked ' %%B%F{white}◼%f%%b'
+
+  zstyle ':prezto:module:git' action ':%F{yellow}%s%f%'
+  zstyle ':prezto:module:git' commit ':%F{green}%.7c%f'
+
+  zstyle ':prezto:module:git' added ' %F{green}✚:%a%f%'
+  zstyle ':prezto:module:git' ahead ' %F{yellow}⬆:%A%f'
+  zstyle ':prezto:module:git' behind ' %F{yellow}⬇:%b%f'
+  zstyle ':prezto:module:git' deleted ' %F{red}✖:%d%f'
+  zstyle ':prezto:module:git' modified ' %F{blue}✱:%m%f'
+  zstyle ':prezto:module:git' renamed ' %F{magenta}➜:%r%f'
+  zstyle ':prezto:module:git' stashed ' %F{cyan}✭:%S%f'
+  zstyle ':prezto:module:git' unmerged ' %F{yellow}═:%U%f'
+  zstyle ':prezto:module:git' untracked ' %F{yellow}◼:%u%f'
 
   zstyle ':prezto:module:git' info \
-    'prompt' '(%F{blue}git%f$(coalesce "%b" "%p" "%c")%s)' \
-    'rprompt' '%A%B%S%a%d%m%r%U%u | '
-
-  # Set vcs_info parameters.
-  local branch_format="(%F{blue}%s:%f%F{green}%b%f%u%c)"
-  local action_format=":%%B%F{yellow}%s%%b"
-  local unstaged_format="●%f"
-  local staged_format="●%f"
-  zstyle ':vcs_info:*' enable bzr hg svn
-  zstyle ':vcs_info:*:prompt:*' check-for-changes true
-  zstyle ':vcs_info:*:prompt:*' unstagedstr "${unstaged_format}"
-  zstyle ':vcs_info:*:prompt:*' stagedstr "${staged_format}"
-  zstyle ':vcs_info:*:prompt:*' actionformats "${branch_format}${action_format}"
-  zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
-  zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
+    'prompt' ' on %b %D %C' \
+    'rprompt' '%A%B%S%a%d%m%r%U%u  '
 
   # Define prompts.
   PROMPT='%{%f%k%b%}
-%{%K{black}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{black}%}%50<...<%~%<<%f ${vcs_info_msg_0_}${git_info:+${(e)git_info[prompt]}}%E%{%f%k%b%}
-%{%K{black}%}$(_prompt_char)%{%K{black}%} %#%{%f%k%b%} '
+%{%K{black}%F{blue}%}%n%f at %F{yellow}%m%f in %F{green}%50<...<%~%<<%f${git_info:+${(e)git_info[prompt]}}$(svn_prompt_info)%E%k
+%{%K{black}%}%F{blue}$(prompt_char)%f%{%K{black}%} %#%{%f%k%b%} '
 
-  RPROMPT='${git_info[rprompt]}%{%B%F{cyan}%}%D{%a, %d.%m.%Y} - %T%{%f%k%b%}'
+  RPROMPT='${git_info[rprompt]}%D{%a, %d.%m.%Y} - %T%k'
 }
 
 prompt_blinks_setup "$@"
