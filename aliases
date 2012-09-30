@@ -3,6 +3,7 @@ alias rf='nocorrect rm -rf'
 alias c=' clear'
 alias exit=' clear && exit'
 alias h='highlight -O ansi'
+alias t='python ~/.cmd/t/t.py --task-dir ~/.tasks --list tasks --delete-if-empty'
 
 # Suffixes
 alias -s iso="vlc"

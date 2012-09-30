@@ -25,9 +25,9 @@ zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'environment' \
-  'syntax-highlighting' \
   'terminal' \
   'editor' \
+  'syntax-highlighting' \
   'history' \
   'history-substring-search' \
   'directory' \
@@ -105,12 +105,12 @@ zstyle ':prezto:module:prompt' theme 'blinks'
 
 # Set syntax highlighters.
 # By default main, brackets, and cursor are enabled.
-zstyle ':prezto:module:syntax-highlighting' highlighters \
-  'main' \
-  'brackets' \
-  'pattern' \
-  'cursor' \
-  'root'
+#zstyle ':prezto:module:syntax-highlighting' highlighters \
+#  'main' \
+#  'brackets' \
+#  'pattern' \
+#  'cursor' \
+#  'root'
 
 #
 # Terminal

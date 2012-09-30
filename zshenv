@@ -83,6 +83,7 @@ unset path_file
 path=(
   /usr/local/Cellar/ruby/1.9.3-p194/bin
   ~/.bin
+  ~/.cmd
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
