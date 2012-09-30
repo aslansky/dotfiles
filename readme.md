@@ -8,6 +8,11 @@ $ git clone git@vcs.slansky.net:dotfiles.git ~/.dotfiles
 $ ~/.dotfiles/dotsync/bin/dotsync -I
 ```
 
+Update
+======
+
+Lokales Update (.dotfiles neu Verlinken): ```dotsync -L```
+
 Sublime
 =======
 

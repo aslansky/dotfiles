@@ -89,7 +89,7 @@ function prompt_blinks_setup {
   zstyle ':prezto:module:git' renamed ' %F{magenta}➜:%r%f'
   zstyle ':prezto:module:git' stashed ' %F{cyan}✭:%S%f'
   zstyle ':prezto:module:git' unmerged ' %F{yellow}═:%U%f'
-  zstyle ':prezto:module:git' untracked ' %F{yellow}◼:%u%f'
+  zstyle ':prezto:module:git' untracked ' %F{white}◼:%u%f'
 
   zstyle ':prezto:module:git' info \
     'prompt' ' on %b %D %C' \
