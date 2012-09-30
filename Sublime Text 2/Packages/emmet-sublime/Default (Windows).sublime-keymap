@@ -1,0 +1,392 @@
+[
+	{
+		"keys": ["ctrl+e"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "expand_abbreviation"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+n"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "match_pair_outward"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+t"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "match_pair_inward"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+period"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "next_edit_point"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+,"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "prev_edit_point"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+j"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "merge_lines"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+/"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "toggle_comment"
+		},
+		"context": [{
+			"key": "selector",
+			"operand": "source.css, text.xml, text.html.basic",
+			"operator": "equal"
+		}, {
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["shift+ctrl+j"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "split_join_tag"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+u"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "remove_tag"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+shift+="],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "evaluate_math_expression"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+0"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "increment_number_by_1"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+9"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "decrement_number_by_1"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+0"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "increment_number_by_01"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+9"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "decrement_number_by_01"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+shift+0"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "increment_number_by_10"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+shift+9"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "decrement_number_by_10"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+period"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "select_next_item"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+,"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "select_previous_item"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+shift+v"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "reflect_css_value"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+shift+alt+6"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "encode_decode_data_url"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["ctrl+alt+shift+m"],
+		"command": "run_emmet_action",
+		"args": {
+			"action": "update_image_size"
+		},
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"command": "expand_as_you_type",
+		"keys": ["ctrl+alt+enter"],
+		"context": [
+			{
+				"key": "setting.is_widget", 
+				"operand": false, 
+				"operator": "equal"
+			}, {
+				"key": "setting.enable_emmet_keymap"
+			}
+		]
+	},
+
+	{
+		"command": "wrap_as_you_type",
+		"keys": ["ctrl+alt+w"],
+		"context": [
+			{
+				"key": "setting.is_widget", 
+				"operand": false, 
+				"operator": "equal"
+			}, {
+				"key": "setting.enable_emmet_keymap"
+			}
+		]
+	},
+
+	{
+		"keys": ["tab"],
+		"command": "expand_abbreviation_by_tab",
+		"context": [
+			{
+				"key": "selector",
+				"match_all": true,
+				"operand": "source.css, source.sass, source.less, source.scss, source.stylus, text.xml, text.html.basic - source.php - keyword.control.php, text.haml, text.html.ruby, text.html.twig, string",
+				"operator": "equal"
+			}, {
+				"key": "selection_empty",
+				"match_all": true
+			}, {
+				"key": "has_next_field",
+				"operator": "equal",
+				"operand": false,
+				"match_all": true
+			}, {
+				"key": "setting.disable_tab_abbreviations",
+				"operator": "equal",
+				"operand": false,
+				"match_all": true
+			}, {
+				"key": "auto_complete_visible",
+				"operand": false,
+				"operator": "equal",
+				"match_all": true
+			}, {
+				"key": "is_abbreviation",
+				"match_all": true
+			}
+		]
+	},
+
+	// behaviour of tab key when autocomplete popup is visible
+	{
+		"keys": ["tab"],
+		"command": "expand_abbreviation_by_tab",
+		"context": [
+			{
+				"key": "selector",
+				"match_all": true,
+				"operand": "source.css, source.sass, source.less, source.scss, source.stylus, text.xml, text.html.basic - source.php - keyword.control.php, text.haml, text.html.ruby, text.html.twig, string",
+				"operator": "equal"
+			}, {
+				"key": "selection_empty",
+				"match_all": true
+			}, {
+				"key": "has_next_field",
+				"operator": "equal",
+				"operand": false,
+				"match_all": true
+			}, {
+				"key": "auto_complete_visible",
+				"operator": "equal",
+				"operand": true,
+				"match_all": true
+			}, {
+				"key": "setting.disable_tab_abbreviations_on_auto_complete",
+				"operator": "equal",
+				"operand": false,
+				"match_all": true
+			}, {
+				"key": "is_abbreviation",
+				"match_all": true
+			}
+		]
+	}, 
+
+	// insert linebreak with formatting
+	{
+		"keys": ["enter"],
+		"command": "handle_enter_key",
+		"context": [
+			{
+				"key": "selector",
+				"operand": "text.html.basic -source, text.xml, text.html.ruby, text.html.twig"
+			}, {
+				"key": "auto_complete_visible",
+				"operand": false
+			}
+		]
+	},
+
+	{
+		"keys": ["super+shift+r"],
+		"command": "rename_tag",
+		"context": [{
+			"key": "setting.enable_emmet_keymap"
+		}]
+	},
+
+	{
+		"keys": ["#"],
+		"command": "emmet_insert_attribute",
+		"args": {"attribute": "id"},
+		"context": [
+			{
+				"key": "selector",
+				"match_all": true,
+				"operand": "text.html meta.tag -string -punctuation.definition.tag.begin.html -meta.scope.between-tag-pair.html -source -meta.tag.template.value.twig",
+				"operator": "equal"
+			}, {
+				"key": "setting.auto_id_class",
+				"operator": "equal",
+				"operand": true
+			}
+		]
+	},
+
+	{
+		"keys": ["."],
+		"command": "emmet_insert_attribute",
+		"args": {"attribute": "class"},
+		"context": [
+			{
+				"key": "selector",
+				"match_all": true,
+				"operand": "text.html meta.tag -string -punctuation.definition.tag.begin.html -meta.scope.between-tag-pair.html -source -meta.tag.template.value.twig",
+				"operator": "equal"
+			}, {
+				"key": "setting.auto_id_class",
+				"operator": "equal",
+				"operand": true
+			}
+		]
+	}
+]

@@ -50,3 +50,5 @@ alias -s ppt="open"
 alias -s pptx="open"
 alias -s odp="open"
 
+alias -s md="open -a Mou"
+

@@ -1,0 +1,18 @@
+{
+	"auto_upgrade_last_run": 1349033344,
+	"installed_packages":
+	[
+		"emmet-sublime",
+		"jQuery",
+		"JsFormat",
+		"Package Control",
+		"Pretty JSON",
+		"SideBarEnhancements",
+		"StringEncode",
+		"SublimeLinter"
+	],
+	"repositories":
+	[
+		"https://github.com/sergeche/emmet-sublime"
+	]
+}
