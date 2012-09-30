@@ -31,3 +31,8 @@ zshenv
 zshrc
 zsh
 [endfiles]
+
+[hosts]
+slansky.net                  git=ANY
+mindy                        git=ANY
+[endhosts]

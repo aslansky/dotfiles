@@ -72,7 +72,7 @@ function prompt_blinks_setup {
   zstyle ':prezto:module:git' action ':%F{yellow}%s%f%'
   zstyle ':prezto:module:git' commit ':%F{green}%.7c%f'
 
-  zstyle ':prezto:module:git' added ' %F{green}✚:%a%f%'
+  zstyle ':prezto:module:git' added ' %F{green}✚:%a%f'
   zstyle ':prezto:module:git' ahead ' %F{yellow}⬆:%A%f'
   zstyle ':prezto:module:git' behind ' %F{yellow}⬇:%b%f'
   zstyle ':prezto:module:git' deleted ' %F{red}✖:%d%f'
