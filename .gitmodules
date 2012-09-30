@@ -1,0 +1,6 @@
+[submodule "zprezto"]
+	path = zprezto
+	url = git://github.com/sorin-ionescu/prezto.git
+[submodule "dotsync"]
+	path = dotsync
+	url = git@github.com:dotphiles/dotsync.git

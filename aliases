@@ -1,0 +1,52 @@
+# more aliases
+alias rf='nocorrect rm -rf'
+alias c=' clear'
+alias exit=' clear && exit'
+alias h='highlight -O ansi'
+
+# Suffixes
+alias -s iso="vlc"
+alias -s avi="vlc"
+alias -s AVI="vlc"
+alias -s mov="vlc"
+alias -s mpg="vlc"
+alias -s m4v="vlc"
+alias -s mp4="vlc"
+alias -s rmvb="vlc"
+alias -s MP4="vlc"
+alias -s ogg="vlc"
+alias -s ogv="vlc"
+alias -s flv="vlc"
+alias -s mkv="vlc"
+alias -s wav="vlc"
+
+alias -s tif="ql"
+alias -s tiff="ql"
+alias -s png="ql"
+alias -s jpg="ql"
+alias -s jpeg="ql"
+alias -s JPG="ql"
+alias -s gif="ql"
+alias -s svg="ql"
+alias -s psd="ql"
+
+alias -s com="open"
+alias -s de="open"
+alias -s org="open"
+
+alias -s ods="open"
+alias -s xls="open"
+alias -s xlsx="open"
+alias -s csv="open"
+
+alias -s pot="open"
+alias -s odt="open"
+alias -s doc="open"
+alias -s docx="open"
+alias -s rtf="open"
+alias -s dot="open"
+
+alias -s ppt="open"
+alias -s pptx="open"
+alias -s odp="open"
+
