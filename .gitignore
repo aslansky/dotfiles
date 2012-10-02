@@ -1,2 +1,7 @@
 auth/
 .DS_Store
+task/completed.data
+task/pending.data
+task/undo.data
+tasks/.tasks.done
+.chache

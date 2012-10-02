@@ -4,3 +4,6 @@
 [submodule "dotsync"]
 	path = dotsync
 	url = git@github.com:dotphiles/dotsync.git
+[submodule "cmd/t"]
+	path = cmd/t
+	url = git://github.com/sjl/t.git

@@ -2,6 +2,7 @@
 aliases
 ctags
 curlrc
+cmd
 dotsync/bin
 editrc
 fasdrc
@@ -18,8 +19,7 @@ pylintrc
 pythonrc
 screenrc
 subversion
-task
-taskrc
+tasks
 tigrc
 wgetrc
 zlogin

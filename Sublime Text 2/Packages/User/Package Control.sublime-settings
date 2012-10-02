@@ -1,0 +1,23 @@
+{
+	"auto_upgrade_last_run": 1349218473,
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"DocBlockr",
+		"emmet-sublime",
+		"Gist",
+		"jQuery",
+		"JsFormat",
+		"Nettuts+ Fetch",
+		"Nodejs",
+		"Package Control",
+		"Pretty JSON",
+		"SideBarEnhancements",
+		"StringEncode",
+		"SublimeLinter"
+	],
+	"repositories":
+	[
+		"https://github.com/sergeche/emmet-sublime"
+	]
+}

@@ -1,11 +1,6 @@
-# Create a new directory and enter it
-function md() {
-    mkdir -p "$@" && cd "$@"
-}
-
 # find shorthand
 function f() {
-    find . -name "$1"
+    spot ./ $1
 }
 
 # Copy w/ progress
@@ -24,12 +19,6 @@ function json() {
     fi
 }
 
-# Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
-# Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
-function httpcompression() {
-    encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" | grep '^Content-Encoding:')" && echo "$1 is encoded using ${encoding#* }" || echo "$1 is not using any encoding"
-}
-
 # get gzipped size
 function gz() {
     echo "orig size    (bytes): "
@@ -38,26 +27,61 @@ function gz() {
     gzip -c "$1" | wc -c
 }
 
-# All the dig info
-function digga() {
-    dig +nocmd "$1" any +multiline +noall +answer
-}
-
-# Put a console clock in top right corner
-# http://www.commandlinefu.com/commands/view/7916/
-function clock () {
-    while sleep 1;
-    do
-        tput sc
-        tput cup 0 $(($(tput cols)-29))
-        date
-        tput rc
-    done &
-}
-
 memtop() {ps -eorss,args | sort -nr | pr -TW$COLUMNS | head}
 zle -N memtop
 
-wp() {
-    dig +short txt ${1}.wp.dg.cx
+# -------------------------------------------------------------------
+# any function from http://onethingwell.org/post/14669173541/any
+# -------------------------------------------------------------------
+any() {
+    emulate -L zsh
+    unsetopt KSH_ARRAYS
+    if [[ -z "$1" ]] ; then
+        echo "any - grep for process(es) by keyword" >&2
+        echo "Usage: any " >&2 ; return 1
+    else
+        ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
+    fi
 }
+
+# -------------------------------------------------------------------
+# console function
+# -------------------------------------------------------------------
+function console () {
+  if [[ $# > 0 ]]; then
+    query=$(echo "$*"|tr -s ' ' '|')
+    tail -f /var/log/system.log|grep -i --color=auto -E "$query"
+  else
+    tail -f /var/log/system.log
+  fi
+}
+
+# -------------------------------------------------------------------
+# view man pages in Preview
+# -------------------------------------------------------------------
+function pman() { ps=`mktemp -t manpageXXXX`.ps ; man -t $@ > "$ps" ; open "$ps" ; }
+
+# -------------------------------------------------------------------
+# shell function to define words
+# http://vikros.tumblr.com/post/23750050330/cute-little-function-time
+# -------------------------------------------------------------------
+givedef() {
+  if [[ $# -ge 2 ]] then
+    echo "givedef: too many arguments" >&2
+    return 1
+  else
+    curl "dict://dict.org/d:$1"
+  fi
+}
+
+# -------------------------------------------------------------------
+# myIP address
+# -------------------------------------------------------------------
+function myip() {
+    ifconfig lo0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "lo0       : " $2}'
+    ifconfig en0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+    ifconfig en0 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en0 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
+    ifconfig en1 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en1 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+    ifconfig en1 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en1 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
+}
+

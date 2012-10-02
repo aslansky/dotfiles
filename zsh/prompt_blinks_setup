@@ -7,6 +7,14 @@ function prompt_char {
     echo ' '
 }
 
+# ----------------------------------------------------------------------------
+# svn prompt
+# based on: https://gist.github.com/1156969
+# with help from: http://andrewray.me/bash-prompt-builder/index.html
+#
+# Only the root directory holds the .svn repository. We need to test each directory in the current
+# directory's path to determine if we are under Subversion control.
+# ----------------------------------------------------------------------------
 function svn_prompt_info {
     # Set up defaults
     local svn_branch=""
@@ -14,8 +22,9 @@ function svn_prompt_info {
     local svn_version=""
     local svn_change=""
 
-    # only if we are in a directory that contains a .svn entry
-    if [ -d ".svn" ]; then
+    # if `svn info` returns more than 1 line, we are under subversion control
+    testsvn=`svn info > /dev/null 2>&1 | wc -l`
+    if [ $testsvn -gt 1 ] ; then
         # query svn info and parse the results
         svn_branch=`svn info | grep '^URL:' | egrep -o '((tags|branches)/[^/]+|trunk).*' | sed -E -e 's/^(branches|tags)\///g'`
         svn_repository=`svn info | grep '^Repository Root:' | egrep -o '(http|https|file|svn|svn+ssh)/[^/]+' | egrep -o '[^/]+$'`
@@ -33,6 +42,15 @@ function svn_prompt_info {
         echo "%F{blue}$svn_repository/$svn_branch @ $svn_version%f%F{yellow}$svn_change%f"
 
     fi
+}
+
+function prompt_tasks {
+  tasks=`t  > /dev/null 2>&1 | wc -l | sed -e's/ *//'`
+  color="green"
+  if [ $tasks -gt 5 ]; then
+    color="red"
+  fi
+  echo "%F{$color}T:$tasks%f"
 }
 
 function prompt_blinks_precmd {
@@ -80,7 +98,7 @@ function prompt_blinks_setup {
   zstyle ':prezto:module:git' renamed ' %F{magenta}➜:%r%f'
   zstyle ':prezto:module:git' stashed ' %F{cyan}✭:%S%f'
   zstyle ':prezto:module:git' unmerged ' %F{yellow}═:%U%f'
-  zstyle ':prezto:module:git' untracked ' %F{yellow}◼:%u%f'
+  zstyle ':prezto:module:git' untracked ' %F{white}◼:%u%f'
 
   zstyle ':prezto:module:git' info \
     'prompt' ' on %b %D %C' \
@@ -91,7 +109,7 @@ function prompt_blinks_setup {
 %{%K{black}%F{blue}%}%n%f at %F{yellow}%m%f in %F{green}%50<...<%~%<<%f${git_info:+${(e)git_info[prompt]}}$(svn_prompt_info)%E%k
 %{%K{black}%}%F{blue}$(prompt_char)%f%{%K{black}%} %#%{%f%k%b%} '
 
-  RPROMPT='${git_info[rprompt]}%D{%a, %d.%m.%Y} - %T%k'
+  RPROMPT='${git_info[rprompt]}%T $(prompt_tasks) %k'
 }
 
 prompt_blinks_setup "$@"
