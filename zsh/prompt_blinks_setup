@@ -45,7 +45,7 @@ function svn_prompt_info {
 }
 
 function prompt_tasks {
-  tasks=`t | wc -l | sed -e's/ *//'`
+  tasks=`t  > /dev/null 2>&1 | wc -l | sed -e's/ *//'`
   color="green"
   if [ $tasks -gt 5 ]; then
     color="red"
